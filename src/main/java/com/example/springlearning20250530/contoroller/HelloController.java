@@ -3,7 +3,9 @@ package com.example.springlearning20250530.contoroller;
 import com.example.springlearning20250530.dto.UserDto;
 import com.example.springlearning20250530.entity.User;
 import com.example.springlearning20250530.repository.UserRepository;
+import com.example.springlearning20250530.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,13 +17,17 @@ import java.util.Optional;
 public class HelloController {
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/hello")
     public String SayHello() {
-        return "Hello fron Spring Boot with Gradle";
+        userService.processLongTask(); // 비동기 호출한다.
+        return "Hello fron Spring Boot with Gradle ( Async Task Started )";
     }
 
     @GetMapping("/users")
+    @Cacheable(value = "usersCache", key = "'allUsers'")
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
