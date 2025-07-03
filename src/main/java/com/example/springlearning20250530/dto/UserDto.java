@@ -2,6 +2,7 @@ package com.example.springlearning20250530.dto;
 
 public class UserDto {
     private String username;
+    private String password;
     private String email;
 
     public String getUsername() {
@@ -18,5 +19,13 @@ public class UserDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

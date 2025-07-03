@@ -13,8 +13,5 @@ public class UserService {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-
-
     }
-
 }

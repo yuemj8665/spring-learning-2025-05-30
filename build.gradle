@@ -27,6 +27,7 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql'
     implementation 'org.springframework.boot:spring-boot-starter-security' // CSRF 인증절차 의존성
     implementation 'org.springframework.boot:spring-boot-starter-cache' // 캐싱 의존성
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 }
 
 tasks.named('test') {
