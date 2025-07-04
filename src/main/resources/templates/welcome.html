@@ -10,7 +10,6 @@
 </head>
 <body>
 <div class="welcome-message" th:text="'Welcome, ' + ${message}"></div>
-<div th:if="${message}" th:text="'Logged in as: ' + ${message.split(' ')[4]}"></div>
 <div th:text="'Welcome, ' + ${message} ?: 'Guest'"></div>
 <div class="logout-button">
     <a href="/logout">Logout</a>

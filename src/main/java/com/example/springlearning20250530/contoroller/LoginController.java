@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
+
 @Controller
 public class LoginController {
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
@@ -46,10 +48,12 @@ public class LoginController {
     }
 
     @GetMapping("/welcome")
-    public String welcome(Model model, HttpSession session) {
-        String username = (String) session.getAttribute("username");
-        if (username != null) {
+    public String welcome(Model model, HttpSession session, Principal principal) {
+        if (principal != null) {
+            String username = principal.getName();
             model.addAttribute("message", "Login Successful for " + username);
+        } else {
+            model.addAttribute("message", "Welcome GUEST!");
         }
         return "welcome";
     }
