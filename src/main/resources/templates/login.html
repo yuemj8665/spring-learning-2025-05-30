@@ -1,22 +1,14 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Login Page</title>
-</head>
+<!DOCTYPE html> <!-- HTML5 문서 타입 선언 -->
+<html xmlns:th="http://www.thymeleaf.org"> <!-- Thymeleaf 네임스페이스 선언 -->
+<head><title>Login</title></head> <!-- 페이지 제목 설정 -->
 <body>
-<h1>Welcome to Login!</h1>
-<p>This is a test login page.</p>
-<form th:action="@{/login}" method="post">
-    <div>
-        <label>Username: <input type="text" name="username"/></label>
-    </div>
-    <div>
-        <label>Password: <input type="password" name="password"/></label>
-    </div>
-    <div>
-        <button type="submit">Login</button>
-    </div>
+<h2>Login Page</h2> <!-- 로그인 페이지 제목 -->
+<div th:if="${error}" th:text="${error}" style="color:red;"></div> <!-- 오류 메시지 표시, 조건적으로 렌더링 -->
+<form method="post" th:action="@{/login}"> <!-- POST 방식으로 /login 처리 -->
+    <div><label>Username: <input type="text" name="username"/></label></div> <!-- 사용자 이름 입력 필드 -->
+    <div><label>Password: <input type="password" name="password"/></label></div> <!-- 비밀번호 입력 필드 -->
+    <div><input type="submit" value="Login"/></div> <!-- 제출 버튼 -->
 </form>
+<div th:if="${message}" th:text="${message}" style="color:green;"></div> <!-- 성공 메시지 표시, 조건적으로 렌더링 -->
 </body>
 </html>

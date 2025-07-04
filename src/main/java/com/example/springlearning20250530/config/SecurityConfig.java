@@ -41,11 +41,13 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/login").permitAll()
+                        .requestMatchers("/welcome").hasRole("USER")
                         .requestMatchers("/users").hasRole("USER")
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
+                        .defaultSuccessUrl("/welcome", true) // 성공 시 /welcome으로 강제 리다이렉션
                         .permitAll()
                 )
                 .csrf((csrf) -> csrf
