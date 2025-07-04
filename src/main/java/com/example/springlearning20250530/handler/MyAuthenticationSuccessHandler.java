@@ -17,7 +17,7 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
     private static final Logger logger = LoggerFactory.getLogger(MyAuthenticationSuccessHandler.class);
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         logger.info("Custom AuthenticationSuccessHandler: Login successful for user: {}", authentication.getName());
 
         // 여기에 원하는 리디렉션 로직을 구현합니다.

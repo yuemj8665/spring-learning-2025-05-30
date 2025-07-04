@@ -37,7 +37,7 @@ public class LoginController {
         User user = userRepository.findByUsername(username);
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         logger.info("user info... : " + user.toString());
-        if (user != null && encoder.matches(password, user.getPassword())) {
+        if (username != null && encoder.matches(password, user.getPassword())) {
             session.setAttribute("username", username);
             model.addAttribute("message", "Login Successful for " + username);
             return "redirect:/welcome";
@@ -48,7 +48,7 @@ public class LoginController {
     }
 
     @GetMapping("/welcome")
-    public String welcome(Model model, HttpSession session, Principal principal) {
+    public String welcome(Model model, Principal principal) {
         if (principal != null) {
             String username = principal.getName();
             model.addAttribute("message", "Login Successful for " + username);
