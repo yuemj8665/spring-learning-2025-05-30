@@ -43,6 +43,14 @@ public class SecurityConfig {
                         .requestMatchers("/login").permitAll()
                         .requestMatchers("/welcome").hasRole("USER")
                         .requestMatchers("/users").hasRole("USER")
+                        .requestMatchers(
+                                "/swagger-ui.html",
+                                "/swagger-ui/**", // Swagger UI 정적 리소스
+                                "/v3/api-docs/**", // OpenAPI 3 문서
+                                "/v2/api-docs/**", // Swagger 2 문서 (사용하는 경우)
+                                "/webjars/**",    // Swagger UI가 사용하는 웹자(webjars) 리소스
+                                "/swagger-resources/**" // Swagger 리소스
+                        ).permitAll() // Swagger 및 OpenAPI 허용
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
