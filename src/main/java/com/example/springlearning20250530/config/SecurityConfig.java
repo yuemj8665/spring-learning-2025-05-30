@@ -40,9 +40,6 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/login").permitAll()
-                        .requestMatchers("/welcome").hasRole("USER")
-                        .requestMatchers("/users").hasRole("USER")
                         .requestMatchers(
                                 "/swagger-ui.html",
                                 "/swagger-ui/**", // Swagger UI 정적 리소스
@@ -51,6 +48,9 @@ public class SecurityConfig {
                                 "/webjars/**",    // Swagger UI가 사용하는 웹자(webjars) 리소스
                                 "/swagger-resources/**" // Swagger 리소스
                         ).permitAll() // Swagger 및 OpenAPI 허용
+                        .requestMatchers("/login").permitAll()
+                        .requestMatchers("/welcome").hasRole("USER")
+                        .requestMatchers("/users").hasRole("USER")
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
