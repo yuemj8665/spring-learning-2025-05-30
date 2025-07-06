@@ -48,6 +48,7 @@ public class SecurityConfig {
                                 "/webjars/**",    // Swagger UI가 사용하는 웹자(webjars) 리소스
                                 "/swagger-resources/**" // Swagger 리소스
                         ).permitAll() // Swagger 및 OpenAPI 허용
+                        .requestMatchers("/").permitAll()
                         .requestMatchers("/login").permitAll()
                         .requestMatchers("/welcome").hasRole("USER")
                         .requestMatchers("/users").hasRole("USER")
